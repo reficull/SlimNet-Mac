@@ -2,7 +2,40 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    
     <Nullable>enable</Nullable>
+    <AssemblyName>SlimNet.Core</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="UnityEngine.Networking" />
+    <None Remove="UnityEngine" />
+    <None Remove="Network\" />
+    <None Remove="UnityEngine_managed" />
+    <None Remove="UnityEngine2021" />
+    <None Remove="Externals\Lidgren\NetConnection.Handshake" />
+    <None Remove="Externals\Lidgren\NetIncomingMessage.Peek" />
+    <None Remove="Externals\Lidgren\NetPeer.Fragmentation" />
+    <None Remove="Behaviours\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Network\" />
+    <Folder Include="Behaviours\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="RPCGen.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RPCGen.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="RPCGen.cs">
+      <DependentUpon>RPCGen.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine_managed">
+      <HintPath>..\UnityEngine_managed.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
